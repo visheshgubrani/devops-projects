@@ -1,4 +1,4 @@
-import { pool } from '../db/dbClient.js'
+import pool from '../db/dbClient.js'
 import asyncHandler from '../utils/asyncHandler.js'
 
 const createTodo = asyncHandler(async (req, res) => {

@@ -1,10 +1,9 @@
 import app from './app.js'
-import { initDb } from './db/dbClient.js'
+import createTable from './models/todo.model.js'
 
 const port = 4080
 
-initDb()
-
-app.listen(port, () => {
-  console.log(`The Server is running on port: ${port}`)
+app.listen(port, async () => {
+  await createTable()
+  console.log(`The Server is running on ${port}`)
 })
