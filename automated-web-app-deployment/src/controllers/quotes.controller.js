@@ -13,4 +13,4 @@ const getRandomQuote = (req, res) => {
 const healthCheck = (req, res) => {
   return res.status(200).json({ message: 'The Server is working correctly' })
 }
-export { getQuotes, getRandomQuote }
+export { getQuotes, getRandomQuote, healthCheck }
