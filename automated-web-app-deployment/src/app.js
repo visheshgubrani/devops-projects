@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import { quotesRouter } from "./routes/quotes.routes"
+import { quotesRouter } from "./routes/quotes.routes.js"
 
 const app = express()
 
@@ -18,4 +18,4 @@ app.use((err, req, res, next) => {
 // Routes
 app.use("/", quotesRouter)
 
-export default express
+export default app

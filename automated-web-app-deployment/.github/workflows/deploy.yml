@@ -1,0 +1,7 @@
+name: Deploy Web App
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "automated-web-app-deployment/**"
