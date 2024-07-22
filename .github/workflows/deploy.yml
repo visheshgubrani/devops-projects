@@ -1,0 +1,26 @@
+name: Deploy Web App
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'automated-web-app-deployment/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          sparse-checkout: 'deploy web app'
+          sparse-checkout-cone-mode: false
+
+      - name: Deploy to EC2
+        env:
+          PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+          HOST: ${{ secrets.EC2_HOST }}
+          USER: ${{ secrets.EC2_USER }}
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          scp -i private_key -o StrictHostKeyChecking=no -r "automated-web-app-deployment"/* ${USER}@${HOST}:~/app/
+          ssh -i private_key -o StrictHostKeyChecking=no ${USER}@${HOST} '~/deploy.sh'
